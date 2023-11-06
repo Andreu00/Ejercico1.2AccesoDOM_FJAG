@@ -20,6 +20,12 @@ public class AccederConDOM {
         acces.abrirXMLaDOM(f);
         
         acces.recorreDOMyMuestra();
+        
+        acces.insertarLibroEnDOM("Cochee", "Empresa", "2022");
+        
+        acces.deleteNode("");
+        
+        acces.guardarDOM("LibrosDeDOM.xml");
     }
     
 }
