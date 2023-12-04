@@ -119,16 +119,15 @@ public class AccesoDOM {
     public int deleteNode(String tit) {
         System.out.println("Buscando el Libro " + tit + " para borrarlo");
         try {
-            //Node root=doc.getFirstChild();
-            Node raiz = doc.getDocumentElement();
-            NodeList nl1 = doc.getElementsByTagName("Titulo");
-            Node n1;
+            Node raiz = doc.getDocumentElement(); //Para saber la raiz del XML
+            NodeList nl1 = doc.getElementsByTagName("Titulo");//Almacenamos los nodos con el nombre indicado
+            Node n1;//La utilizaremos para almacenar info. sobre el nodo en el que nos encontremos
             for (int i = 0; i < nl1.getLength(); i++) {
-                n1 = nl1.item(i);
-                if (n1.getNodeType() == Node.ELEMENT_NODE) {//redundante por getElementsByTagName, no lo es si buscamos getChildNodes()
+                n1 = nl1.item(i); //Sirve para recorrer los nodos a traves del bucle
+                if (n1.getNodeType() == Node.ELEMENT_NODE) {//Para comprobar si el nodo es de tipo ELEMENT_NODE
                     if (n1.getChildNodes().item(0).getNodeValue().equals(tit)) {
                         System.out.println("Borrando el nodo <Libro> con título " + tit);
-                        //n1.getParentNode().removeChild(n1); //borra <Titulo> tit </Titulo>, pero deja Libro y Autor
+                        //borra el nodo de manera completa
                         n1.getParentNode().getParentNode().removeChild(n1.getParentNode());
                     }
 
@@ -151,6 +150,8 @@ public class AccesoDOM {
             Source src = new DOMSource(doc); // Definimos el origen
             StreamResult rst = new StreamResult(new File(nuevoArchivo)); // Definimos el resultado
             // Declaramos el Transformer que tiene el método .transform() que necesitamos.
+            //Lo utilizamos para transformar la fuentes de datos de un domcuento DOM o XML a en lo que deseemos
+            //como un archivo, etc
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
 
             // Opción para indentar el archivo
