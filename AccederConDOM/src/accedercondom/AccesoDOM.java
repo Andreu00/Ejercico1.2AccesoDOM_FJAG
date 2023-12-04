@@ -18,6 +18,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 public class AccesoDOM {
+    //Creamos la variable doc que proviene de Document
     Document doc;
     public int abrirXMLaDOM (File f){
         try{
@@ -34,19 +35,19 @@ public class AccesoDOM {
             //DocumentBuilder tiene el método parse que es el que genera DOM en memoria
 
             DocumentBuilder builder=factory.newDocumentBuilder();
+            //Se utiliza el parse para analizar el documento XML
             doc=builder.parse(f);
-            // ahora doc apunta al arbol DOM y podemos recorrerlo
             System.out.println("DOM creado con éxito.");
             return 0;//si el método funciona
         }catch(Exception e){
             System.out.println(e);
-            return -1;//if the method aborta en algún punto
+            return -1;//En caso de no funcionar un salir de la ejecucion
         }
     }
     
     
     public void recorreDOMyMuestra() {
-        String[] datos=new String[3];//lo usamos para la información de cada libro
+        String[] datos=new String[3];//lo usamos para almacenar la información de cada libro
         Node nodo=null;
         Node root=doc.getFirstChild();
         NodeList nodelist=root.getChildNodes(); //(1)Ver dibujo del árbol
